@@ -2,12 +2,11 @@ import { defineConfig } from "vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
-
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 const basePlugins = [
-  TanStackRouterVite({ autoCodeSplitting: true }), 
-  viteReact(), 
+  TanStackRouterVite({ autoCodeSplitting: true }),
+  viteReact(),
   tailwindcss(),
 ];
 
@@ -28,5 +27,8 @@ export default defineConfig({
   build: {
     // Only generate source maps if Sentry is enabled
     sourcemap: !!process.env.SENTRY_AUTH_TOKEN,
+  },
+  server: {
+    allowedHosts: ['devserver-preview--anuscloud.netlify.app'],
   },
 });
